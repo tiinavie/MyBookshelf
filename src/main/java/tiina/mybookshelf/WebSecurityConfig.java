@@ -21,8 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/collection", "/css/**", "/books").permitAll().and().authorizeRequests()
-				.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated().and().csrf()
+		http.authorizeRequests().antMatchers("/", "/collection", "/css/**", "/books", "/categorylist").permitAll().and()
+				.authorizeRequests().antMatchers("/h2-console/**").permitAll().anyRequest().authenticated().and().csrf()
 				.ignoringAntMatchers("/h2-console/**").and().headers().frameOptions().sameOrigin().and().formLogin()
 				.defaultSuccessUrl("/collection").permitAll().and().logout().permitAll();
 	}

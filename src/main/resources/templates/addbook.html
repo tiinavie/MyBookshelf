@@ -20,8 +20,11 @@
 						<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
 						</select></p>
 					<p><label for="readstatus">Read</label>
-						<input type="text" th:field="*{readstatus}" /></p>
-					<input class="btn btn-success" type="submit" value="Save"></input>
+						<select id="readstatus" th:field="*{readstatus}">
+						<option th:each="readstatus: ${readstatuses}" th:value="${readstatus.statusid}" th:text="${readstatus.name}"></option>
+						</select></p>
+					<input type="submit" value="Save"></input>
+					<a href="/collection"><input type="button" value="Back to Bookshelf"></input></a>
 				</form>
 			</div>
 	</div>

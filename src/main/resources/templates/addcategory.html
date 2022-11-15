@@ -6,12 +6,13 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Add book</h1>
+		<h1>Add category</h1>
 			<div>
 				<form th:object="${category}" th:action="@{catsave}" action="#" method="post">
 					<label for="name">Name</label>
 						<input type="text" th:field="*{name}" />
 					<input type="submit" value="Save"></input>
+					<a href="/collection"><input type="button" value="Back to Bookshelf"></input></a>
 				</form>
 			</div>
 	</div>

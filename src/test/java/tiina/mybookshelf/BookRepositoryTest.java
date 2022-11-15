@@ -30,7 +30,7 @@ public class BookRepositoryTest {
 
 	@Test
 	public void createNewBook() {
-		Collection book = new Collection("Café Con Lychee", "Emery Lee", 2022, null, "not read");
+		Collection book = new Collection("Café Con Lychee", "Emery Lee", 2022, null, null);
 		bookRepository.save(book);
 		assertThat(book.getId()).isNotNull();
 	}

@@ -15,13 +15,17 @@ public class Collection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title, author, readstatus;
+	private String title, author;
 	@Column(name = "publishing_year")
 	private int year;
 	@ManyToOne
 	@JsonIgnoreProperties("books")
 	@JoinColumn(name = "categoryid")
 	private Category category;
+	@ManyToOne
+	@JsonIgnoreProperties("books")
+	@JoinColumn(name = "statusid")
+	private Readstatus readstatus;
 
 	// konstruktorit
 	public Collection() {
@@ -32,7 +36,7 @@ public class Collection {
 		this.readstatus = null;
 	}
 
-	public Collection(String title, String author, int year, Category category, String readstatus) {
+	public Collection(String title, String author, int year, Category category, Readstatus readstatus) {
 		super();
 		this.title = title;
 		this.author = author;
@@ -66,11 +70,11 @@ public class Collection {
 		this.author = author;
 	}
 
-	public String getReadstatus() {
+	public Readstatus getReadstatus() {
 		return readstatus;
 	}
 
-	public void setReadstatus(String readstatus) {
+	public void setReadstatus(Readstatus readstatus) {
 		this.readstatus = readstatus;
 	}
 

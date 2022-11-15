@@ -9,6 +9,8 @@ import tiina.mybookshelf.domain.Category;
 import tiina.mybookshelf.domain.CategoryRepository;
 import tiina.mybookshelf.domain.Collection;
 import tiina.mybookshelf.domain.CollectionRepository;
+import tiina.mybookshelf.domain.Readstatus;
+import tiina.mybookshelf.domain.ReadstatusRepository;
 import tiina.mybookshelf.domain.User;
 import tiina.mybookshelf.domain.UserRepository;
 
@@ -20,8 +22,8 @@ public class MybookshelfApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookshelfDemo(CollectionRepository cRepository, CategoryRepository categoryRepository,
-			UserRepository userRepository) {
+	public CommandLineRunner bookshelfDemo(CollectionRepository cRepository, ReadstatusRepository rsRepository,
+			CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 			Category category1 = new Category("Fantasy");
 			categoryRepository.save(category1);
@@ -29,16 +31,27 @@ public class MybookshelfApplication {
 			categoryRepository.save(category2);
 			Category category3 = new Category("YA");
 			categoryRepository.save(category3);
-			Category category4 = new Category("Romance");
+			Category category4 = new Category("Nonfiction");
 			categoryRepository.save(category4);
 
-			cRepository.save(new Collection("Alice Isn\'t Dead", "Joseph Fink", 2018, category2, "not read"));
-			cRepository.save(new Collection("Welcome to Night Vale", "Joseph Fink & Jeffrey Cranor", 2015, category2,
-					"finished"));
-			cRepository.save(new Collection("It Devours!", "Joseph Fink & Jeffrey Cranor", 2017, category2, "reading"));
-			cRepository.save(new Collection("Coraline", "Neil Gaiman", 2002, category2, "finished"));
-			cRepository.save(new Collection("The Graveyard Book", "Neil Gaiman", 2008, category1, "finished"));
-			cRepository.save(new Collection("American Gods", "Neil Gaiman", 2001, category1, "finished"));
+			Readstatus readstatus1 = new Readstatus("Not read");
+			rsRepository.save(readstatus1);
+			Readstatus readstatus2 = new Readstatus("Reading");
+			rsRepository.save(readstatus2);
+			Readstatus readstatus3 = new Readstatus("Finished");
+			rsRepository.save(readstatus3);
+
+			cRepository.save(new Collection("The October Man", "Ben Aaronovitch", 2019, category1, readstatus1));
+			cRepository.save(new Collection("The Furthest Station", "Ben Aaronovitch", 2017, category1, readstatus1));
+			cRepository.save(new Collection("Tolkienin Tulkkina", "Kersti Juva", 2021, category4, readstatus2));
+			cRepository.save(new Collection("Coraline", "Neil Gaiman", 2002, category2, readstatus3));
+			cRepository.save(new Collection("The Graveyard Book", "Neil Gaiman", 2008, category1, readstatus3));
+			cRepository.save(new Collection("American Gods", "Neil Gaiman", 2001, category1, readstatus3));
+			cRepository.save(new Collection("A Darker Shade of Magic", "V. E. Schwab", 2015, category1, readstatus1));
+			cRepository.save(new Collection("Love in Vein", "Poppy Z. Brite", 2000, category2, readstatus1));
+			cRepository.save(
+					new Collection("The Light at the End", "John Skipp & Graig Spector", 2015, category2, readstatus1));
+			cRepository.save(new Collection("Kumma Kirjoitusopas", "Osuuskumma", 2022, category4, readstatus2));
 
 			// users: admin/admin and user/user
 			User user1 = new User("owner", "$2a$10$V3GwmSjIWoL7HBVIFleg6.q4Kq41wAeC0PVabpdA8ewoQdTzbQrr6", "OWNER");
